@@ -153,16 +153,18 @@
 
   <section>
     <h2>About</h2>
-    <p>Vāgdhenu maps a metrical verse to its chanted <em>pārāyaṇa</em> recitation. It pairs an
-    off-the-shelf flow-matching TTS backbone and a neural vocoder with the components a faithful
-    Sanskrit chant pipeline actually needs: a script-aware frontend that routes Sanskrit through
-    Kannada orthography (avoiding the Hindi schwa-deletion that Devanagari triggers); visarga sandhi
-    with the jihvāmūlīya and upadhmānīya allophones; the aspiration contrast; the three sibilants and
-    the full retroflex series kept distinct; homorganic anusvāra and vocalic ṝ — and a vṛtta-aware
-    mechanism that detects the meter and selects a matched reference under the <em>half-reference
-    rule</em>. A five-hour clone on the flow-matching backbone reaches an expert MOS of about
-    <strong>4.6</strong>, and dense conjuncts (including retroflex aspirates) render correctly — the
-    class earlier architectures could not crack.</p>
+    <p>Vāgdhenu maps a metrical verse to its chanted <em>pārāyaṇa</em> recitation. Its voice is a
+    flow-matching TTS backbone <strong>retrained on a purpose-recorded, carefully designed
+    single-speaker Sanskrit chant corpus</strong> (~5 hours), with a further voice-steering retrain;
+    the neural vocoder is likewise fine-tuned for the chant register. Around the trained model sits
+    the machinery a faithful Sanskrit chant pipeline needs: a script-aware frontend that routes
+    Sanskrit through Kannada orthography (avoiding the Hindi schwa-deletion that Devanagari triggers);
+    visarga sandhi with the jihvāmūlīya and upadhmānīya allophones; the aspiration contrast; the three
+    sibilants and the full retroflex series kept distinct; homorganic anusvāra and vocalic ṝ; and a
+    vṛtta-aware mechanism that detects the meter and selects a matched reference under the
+    <em>half-reference rule</em>. The retrained model reaches an expert MOS of about <strong>4.6</strong>,
+    and dense conjuncts — including retroflex aspirates — render correctly, the class earlier
+    architectures could not crack.</p>
   </section>
 
   <section class="deploy">
