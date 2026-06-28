@@ -22,6 +22,7 @@ SRC = next((p for p in (os.path.join(os.path.dirname(HERE), "src"), os.path.join
 sys.path.insert(0, SRC)
 
 from huggingface_hub import hf_hub_download
+import limits
 
 
 def _ensure_bigvgan():
@@ -138,10 +139,21 @@ def _resolve_display(name):
 
 
 @spaces.GPU(duration=120)
-def synthesize(text, meter_choice, seed):
+def _render(text, used, seed):
+    return _get_renderer().render_one(text, used, seed=int(seed))
+
+
+def synthesize(text, meter_choice, seed, request: gr.Request):
+    # validation + per-IP quota run OFF the GPU so abuse/rejects cost no compute
     text = (text or "").strip()
     if not text:
         raise gr.Error("Please paste a verse first 🙏")
+    msg = limits.validate_one_shloka(text)
+    if msg:
+        raise gr.Error(msg)
+    if not limits.check_and_count(limits.client_ip(request)):
+        raise gr.Error(f"You've reached today's limit of {limits.DAILY_LIMIT} chants from this network. "
+                       f"Please come back tomorrow 🙏")
     from render_core import detect_meter_key
     if meter_choice == AUTO or not meter_choice:
         used, recognized = _resolve_display(detect_meter_key(text))
@@ -151,7 +163,7 @@ def synthesize(text, meter_choice, seed):
     else:
         used, status = meter_choice, f"🪔 Meter: **{meter_choice}**"
     try:
-        sr, audio = _get_renderer().render_one(text, used, seed=int(seed))
+        sr, audio = _render(text, used, seed)
     except Exception as e:
         raise gr.Error(f"Sorry, rendering failed: {e}")
     return (sr, audio), status
@@ -181,10 +193,11 @@ with gr.Blocks(title="Vāgdhenu — Sanskrit chant", theme=gr.themes.Soft()) as 
     with gr.Row():
         with gr.Column(scale=3):
             txt = gr.Textbox(
-                label="Your verse",
-                placeholder="Paste a Sanskrit verse in any Indian script…",
+                label="Your verse — one shloka at a time",
+                placeholder="Paste a single Sanskrit verse in any Indian script…",
                 value=EX_DEFAULT, lines=4,
             )
+            gr.Markdown("<sub>One shloka per chant · up to 10 chants per day.</sub>")
             with gr.Accordion("⚙️ Advanced (optional)", open=False):
                 meter = gr.Dropdown(METER_CHOICES, value=AUTO, label="Meter (chandas)",
                                     info="Leave on Auto-detect unless you know the meter.")
