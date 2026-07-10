@@ -71,6 +71,18 @@
   audio::-webkit-media-controls-panel{background:#faf4e8}
 
   .deploy p{margin:.45rem 0}
+
+  /* Bhāgavata-VāNi app card */
+  .appcard{background:
+      radial-gradient(900px 260px at 50% -80px, #fbe6c9 0%, rgba(251,230,201,0) 70%), #fff;
+      border:1px solid #ece2d2;border-radius:14px;padding:1.7rem 1.5rem;text-align:center;
+      box-shadow:0 10px 30px -18px rgba(122,31,13,.35)}
+  .app-sanskrit{font-family:'Noto Serif Devanagari',serif;color:#bd8a2d;font-size:1.18rem;
+      letter-spacing:.02em;margin:0 0 .15rem}
+  .app-name{font-size:1.95rem;color:#7a1f0d;font-weight:700;margin:.1rem 0 .55rem;letter-spacing:-.01em}
+  .app-desc{color:#5c5145;max-width:34em;margin:.2rem auto 1.15rem}
+  .appcard .pills{justify-content:center}
+
   footer{padding:2rem 0 3rem;color:#8a7e6f;font-size:.92rem;text-align:center}
   footer strong{color:#5c5145}
   @media(max-width:560px){ h1{font-size:2.5rem} body{font-size:17px} .demo iframe{height:860px} }
@@ -85,6 +97,7 @@
     <p class="by">Prof. Prathosh A P · Indian Institute of Science, Bengaluru · <a href="mailto:prathosh@iisc.ac.in">prathosh@iisc.ac.in</a></p>
     <div class="pills">
       <a class="pill primary" href="#try">Try it</a>
+      <a class="pill" href="#app">Bhāgavata-VāNi app</a>
       <a class="pill" href="vagdhenu_paper.pdf">Paper</a>
       <a class="pill" href="https://github.com/prathoshap/vagdhenu">Code</a>
       <a class="pill" href="https://huggingface.co/prathoshap/vagdhenu">Weights</a>
@@ -156,6 +169,23 @@
         <p class="verse">हठलुठ दल घिष्टोत्कण्ठदष्टोष्ठ विद्युत् सटशठ कठिनोरः पीठभित्सुष्ठुनिष्ठाम् ।<br>पठतिनुतव कण्ठाधिष्ठ घोरान्त्रमाला दह दह नरसिंहासह्यवीर्याहितं मे ॥</p>
         <audio controls preload="none" src="audio/06_malini_narasimha.mp3"></audio>
       </figure>
+    </div>
+  </section>
+
+  <section id="app">
+    <h2>Get the app</h2>
+    <p class="lead">These recitations power a free app for the complete Śrīmad Bhāgavatam.</p>
+    <div class="appcard">
+      <p class="app-sanskrit">॥ भागवतवाणी ॥</p>
+      <h3 class="app-name">Bhāgavata-VāNi</h3>
+      <p class="app-desc">The complete Śrīmad Bhāgavatam — all 12 skandhas — with synced audio recitation and
+        line-by-line karaoke highlighting, in 10 Indian scripts. Search any verse in any script, traditional
+        indices, works fully offline. Free, no ads.</p>
+      <div class="pills">
+        <a class="pill primary" href="https://bhagavatavani.com" target="_blank" rel="noopener">Open web app&nbsp;↗</a>
+        <a class="pill" href="https://play.google.com/store/apps/details?id=in.prathosh.bhagavatavani" target="_blank" rel="noopener">Google&nbsp;Play&nbsp;↗</a>
+        <a class="pill" href="https://apps.apple.com/app/bhagavatavani/id6784783567" target="_blank" rel="noopener">App&nbsp;Store&nbsp;↗</a>
+      </div>
     </div>
   </section>
 
