@@ -1,0 +1,30 @@
+[
+ {
+  "id": "eval_nar_010_002_1",
+  "dur": 6.783,
+  "pieces": 1,
+  "seed": 60,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/base_all_6000_v4/eval_nar_010_002_1.wav"
+ },
+ {
+  "id": "eval_nar_010_008_1",
+  "dur": 7.003,
+  "pieces": 1,
+  "seed": 60,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/base_all_6000_v4/eval_nar_010_008_1.wav"
+ },
+ {
+  "id": "eval_nar_050_002_1",
+  "dur": 14.03,
+  "pieces": 1,
+  "seed": 60,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/base_all_6000_v4/eval_nar_050_002_1.wav"
+ },
+ {
+  "id": "eval_nar_050_008_1",
+  "dur": 13.87,
+  "pieces": 1,
+  "seed": 60,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/base_all_6000_v4/eval_nar_050_008_1.wav"
+ }
+]

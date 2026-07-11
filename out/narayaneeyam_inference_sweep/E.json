@@ -1,0 +1,58 @@
+[
+  {
+    "id": "eval_nar_010_002_1",
+    "meter": "vasantatilakā",
+    "padas": [
+      "मिथ्याग्रहास्मिमतिरागविकोपभीतिः अज्ञानवृत्तिमिति पञ्चविधां स सृष्ट्वा ।"
+    ],
+    "seed": 63,
+    "no_sandhi": true,
+    "ref_wav": "/scratch/0012/shasharma/vagdhenu-training/Narayaneeyam/Dashakam 43/Narayaneeyam Dasakam 43.7.2.flac",
+    "ref_text": "ಆಘ್ನಾನಮಮ್ಬುಜಕರೇಣ ಭವನ್ತಮೇತ್ಯ ಗೋಪಾ ದಧುರ್ಗಿರಿವರಾದಿವ ನೀಲರತ್ನಮ್",
+    "out": "eval_nar_010_002_1.wav",
+    "no_autoprime": true,
+    "sps": 0.42
+  },
+  {
+    "id": "eval_nar_010_008_1",
+    "meter": "vasantatilakā",
+    "padas": [
+      "धर्मादिकानभिसृजन्नथ कर्दमं च वाणीं विधाय विधिरङ्गजसंकुलोऽभूत् ।"
+    ],
+    "seed": 63,
+    "no_sandhi": true,
+    "ref_wav": "/scratch/0012/shasharma/vagdhenu-training/Narayaneeyam/Dashakam 43/Narayaneeyam Dasakam 43.7.2.flac",
+    "ref_text": "ಆಘ್ನಾನಮಮ್ಬುಜಕರೇಣ ಭವನ್ತಮೇತ್ಯ ಗೋಪಾ ದಧುರ್ಗಿರಿವರಾದಿವ ನೀಲರತ್ನಮ್",
+    "out": "eval_nar_010_008_1.wav",
+    "no_autoprime": true,
+    "sps": 0.42
+  },
+  {
+    "id": "eval_nar_050_002_1",
+    "meter": "vrutta-1",
+    "padas": [
+      "विहितजगतीरक्षं लक्ष्मीकराम्बुज-लालितं ददति चरणद्वन्द्वं वृन्दावने त्वयि पावने ।"
+    ],
+    "seed": 63,
+    "no_sandhi": true,
+    "ref_wav": "/scratch/0012/shasharma/vagdhenu-training/Narayaneeyam/Dashakam 50/Narayaneeyam Dasakam 50.7.1.flac",
+    "ref_text": "ಕ್ವಚನ ದಿವಸೇ ಭೂಯೋ ಭೂಯಸ್ತರೇ ಪರುಷಾತಪೇ ತಪನತನಯಾಪಾಥಃ ಪಾತುಂ ಗತಾ ಭವದಾದಯಃ",
+    "out": "eval_nar_050_002_1.wav",
+    "no_autoprime": true,
+    "sps": 0.39
+  },
+  {
+    "id": "eval_nar_050_008_1",
+    "meter": "vrutta-1",
+    "padas": [
+      "पिबति सलिलं गोपव्राते भवन्तमभिद्रुतः स किल निगिलन्नग्निप्रख्यं पुनर्द्रुतमुद्वमन् ।"
+    ],
+    "seed": 63,
+    "no_sandhi": true,
+    "ref_wav": "/scratch/0012/shasharma/vagdhenu-training/Narayaneeyam/Dashakam 50/Narayaneeyam Dasakam 50.7.1.flac",
+    "ref_text": "ಕ್ವಚನ ದಿವಸೇ ಭೂಯೋ ಭೂಯಸ್ತರೇ ಪರುಷಾತಪೇ ತಪನತನಯಾಪಾಥಃ ಪಾತುಂ ಗತಾ ಭವದಾದಯಃ",
+    "out": "eval_nar_050_008_1.wav",
+    "no_autoprime": true,
+    "sps": 0.39
+  }
+]

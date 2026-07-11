@@ -1,0 +1,32 @@
+{
+  "clips": 1231,
+  "issue_counts": {
+    "long_trailing_silence": 4,
+    "low_peak": 55,
+    "sample_rate_below_24khz": 60
+  },
+  "peak_dbfs": {
+    "p05": -11.976,
+    "p50": -7.591,
+    "p95": -4.544
+  },
+  "rms_dbfs": {
+    "p05": -28.157,
+    "p50": -23.522,
+    "p95": -20.877
+  },
+  "leading_silence_s": {
+    "p50": 0.06,
+    "p95": 0.18,
+    "p99": 0.28
+  },
+  "trailing_silence_s": {
+    "p50": 0.14,
+    "p95": 0.34,
+    "p99": 0.54
+  },
+  "stereo_correlation": {
+    "p01": 1.0,
+    "p50": 1.0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "source_root": "/Users/shankararamasharma/Desktop/Vyoma Linguistic Labs/AI - AI Projects/Narayaneeyam",
+  "source_fingerprint": "b8280e35d41b0ad0",
+  "audio_files": 1231,
+  "text_files": 1236,
+  "paired_clips": 1231,
+  "total_hours": 3.8360192227777765,
+  "audio_without_text": 0,
+  "text_without_audio": 5,
+  "duplicate_audio_keys": 0,
+  "duplicate_text_keys": 0,
+  "unparseable_files": 0,
+  "issue_counts": {
+    "sample_rate_below_24khz": 60,
+    "unicode_control_character": 8
+  }
+}

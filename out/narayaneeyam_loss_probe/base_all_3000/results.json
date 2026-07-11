@@ -1,0 +1,16 @@
+[
+ {
+  "id": "eval_nar_010_002_1",
+  "dur": 6.803,
+  "pieces": 1,
+  "seed": 60,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/base_all_3000/eval_nar_010_002_1.wav"
+ },
+ {
+  "id": "eval_nar_030_001_1",
+  "dur": 7.023,
+  "pieces": 1,
+  "seed": 60,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/base_all_3000/eval_nar_030_001_1.wav"
+ }
+]

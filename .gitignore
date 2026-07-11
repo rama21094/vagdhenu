@@ -9,6 +9,7 @@ __pycache__/
 !examples/**/*.wav
 .DS_Store
 .venv/
+.audit-venv/
 BigVGAN/
 demo/BigVGAN/
 !src/reference_bank/*.wav

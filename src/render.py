@@ -163,12 +163,14 @@ ap.add_argument("--shard", required=True)
 ap.add_argument("--results", required=True)
 ap.add_argument("--outdir", default="", help="if set, write <outdir>/<id>.wav (overrides per-clip out)")
 ap.add_argument("--dump_raw", default="", help="debug: also write un-gated concat to <dump_raw>/<id>_raw.wav")
+ap.add_argument("--dump_vocos", default="", help="debug: write the Vocos decode for vocoder-layer comparison")
 ap.add_argument("--bank", default=os.path.join(HERE, "reference_bank", "bank.json"))
 ap.add_argument("--voice", default=f"{CHAMP}/voice_steer_ema_2026-06-17.pt")
 ap.add_argument("--voc", default=f"{CHAMP}/voc_bigvgan_EMA_2026-06-11.pth")
 ap.add_argument("--speed", type=float, default=0.90); ap.add_argument("--nfe", type=int, default=64)
 ap.add_argument("--cfg", type=float, default=3.0); ap.add_argument("--gap", type=float, default=0.55)
 ap.add_argument("--gap_halant", type=float, default=0.20)
+ap.add_argument("--output_vocoder", choices=("bigvgan", "vocos"), default="bigvgan")
 a = ap.parse_args()
 
 CFG = dict(dim=1024, depth=22, heads=16, ff_mult=2, text_dim=512, conv_layers=4)
@@ -187,11 +189,14 @@ class Cap:
     def __init__(s, r): s.r = r; s.last = None
     def decode(s, m): s.last = m.detach().cpu().numpy(); return s.r.decode(m)
 cap = Cap(real_voc)
-g = bigvgan.BigVGAN.from_pretrained("nvidia/bigvgan_v2_24khz_100band_256x", use_cuda_kernel=False)
-bsd = torch.load(a.voc, map_location="cpu"); bsd = bsd.get("model", bsd)
-g.load_state_dict(bsd); g.remove_weight_norm(); g = g.cuda().eval()
-for p in g.parameters(): p.requires_grad = False
+g = None
+if a.output_vocoder == "bigvgan":
+    g = bigvgan.BigVGAN.from_pretrained("nvidia/bigvgan_v2_24khz_100band_256x", use_cuda_kernel=False)
+    bsd = torch.load(a.voc, map_location="cpu"); bsd = bsd.get("model", bsd)
+    g.load_state_dict(bsd); g.remove_weight_norm(); g = g.cuda().eval()
+    for p in g.parameters(): p.requires_grad = False
 def bvgan(mel):
+    assert g is not None
     m = torch.from_numpy(mel).cuda()
     with torch.no_grad():
         if m.dim()==3 and m.shape[1]!=100 and m.shape[2]==100: m = m.transpose(1,2)
@@ -273,6 +278,7 @@ def render_clip(clip):
     NSYLL = [n_aksharas(x) for x in PIECES]
     GAPS = [np.zeros(int(a.gap*SR) + (int(a.gap_halant*SR) if _ends_halant(_p) else 0), dtype=np.float32) for _p in PIECES]
     bseg = []
+    vocos_seg = []
     for i, p in enumerate(PIECES):
         au = None
         for att in range(4):
@@ -283,11 +289,17 @@ def render_clip(clip):
             if np.abs(w).max() > 1.5: w = w/32768.0
             if float(np.sqrt((w**2).mean())) > 0.04: au = w; break
         if au is None: au = w
-        y = bvgan(cap.last); mx = np.abs(y).max(); y = y/mx*0.97 if mx > 1 else y
+        vocos_seg.append(au)
+        y = bvgan(cap.last) if a.output_vocoder == "bigvgan" else au.copy()
+        mx = np.abs(y).max()
+        y = y/mx*0.97 if mx > 0 else y
         bseg.append(y)
     if a.dump_raw:
         os.makedirs(a.dump_raw, exist_ok=True)
         sf.write(os.path.join(a.dump_raw, clip["id"] + "_raw.wav"), np.concatenate(bseg), SR)
+    if a.dump_vocos:
+        os.makedirs(a.dump_vocos, exist_ok=True)
+        sf.write(os.path.join(a.dump_vocos, clip["id"] + "_vocos.wav"), np.concatenate(vocos_seg), SR)
     _slp = PT.align_slp1(clip["padas"][0])
     fric = bool(_slp) and _slp[0] in ("S", "z", "s", "h")   # ś/ṣ/s/h onset -> fricative-aware gate
     halant = _ends_halant(PIECES[-1])                       # त्/क्/प् final -> preserve stop burst

@@ -1,0 +1,18 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache /tmp/jieba.cache
+Loading model cost 0.675 seconds.
+Prefix dict has been built successfully.
+Word segmentation module jieba initialized.
+
+
+vocab :  /scratch/0012/shasharma/vagdhenu-training/repo/models/vocab.txt
+token :  custom
+Download Vocos from huggingface charactr/vocos-mel-24khz
+[batch] 4 clips, model loaded
+[meter] vasantatilakā -> vasantatilaka.wav sps=0.259 ref_len=6.49s
+OK eval_nar_010_002_1 11.045s seed63
+OK eval_nar_010_008_1 11.23s seed63
+[meter] vrutta-1 -> vrutta1.wav sps=0.437 ref_len=5.69s
+OK eval_nar_050_002_1 12.39s seed63
+OK eval_nar_050_008_1 12.37s seed63
+[batch] DONE 4/4 FAIL=0

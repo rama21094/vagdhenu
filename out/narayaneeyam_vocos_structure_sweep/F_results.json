@@ -1,0 +1,30 @@
+[
+ {
+  "id": "eval_nar_010_002_1",
+  "dur": 11.983,
+  "pieces": 2,
+  "seed": 64,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/vocos_structure_sweep/F/eval_nar_010_002_1.wav"
+ },
+ {
+  "id": "eval_nar_010_008_1",
+  "dur": 11.643,
+  "pieces": 2,
+  "seed": 64,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/vocos_structure_sweep/F/eval_nar_010_008_1.wav"
+ },
+ {
+  "id": "eval_nar_050_002_1",
+  "dur": 12.41,
+  "pieces": 2,
+  "seed": 64,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/vocos_structure_sweep/F/eval_nar_050_002_1.wav"
+ },
+ {
+  "id": "eval_nar_050_008_1",
+  "dur": 12.83,
+  "pieces": 2,
+  "seed": 64,
+  "out": "/scratch/0012/shasharma/vagdhenu-training/eval/vocos_structure_sweep/F/eval_nar_050_008_1.wav"
+ }
+]

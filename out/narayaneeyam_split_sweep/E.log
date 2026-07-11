@@ -1,0 +1,26 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache /tmp/jieba.cache
+Loading model cost 0.746 seconds.
+Prefix dict has been built successfully.
+/scratch/0012/shasharma/vagdhenu-training/venv/lib/python3.10/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/scratch/0012/shasharma/vagdhenu-training/repo/BigVGAN/bigvgan.py:482: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint_dict = torch.load(model_file, map_location=map_location)
+/scratch/0012/shasharma/vagdhenu-training/repo/src/render.py:192: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  bsd = torch.load(a.voc, map_location="cpu"); bsd = bsd.get("model", bsd)
+Word segmentation module jieba initialized.
+
+
+vocab :  /scratch/0012/shasharma/vagdhenu-training/repo/models/vocab.txt
+token :  custom
+Download Vocos from huggingface charactr/vocos-mel-24khz
+Loading weights from nvidia/bigvgan_v2_24khz_100band_256x
+Removing weight norm...
+[batch] 4 clips, model loaded
+[meter] vasantatilakā -> vasantatilaka.wav sps=0.259 ref_len=6.49s
+OK eval_nar_010_002_1 11.53s seed63
+OK eval_nar_010_008_1 10.927s seed63
+[meter] vrutta-1 -> vrutta1.wav sps=0.437 ref_len=5.69s
+OK eval_nar_050_002_1 12.31s seed63
+OK eval_nar_050_008_1 12.69s seed63
+[batch] DONE 4/4 FAIL=0

@@ -1,0 +1,44 @@
+{
+  "audio_without_text": [],
+  "text_without_audio": [
+    {
+      "dasakam": 17,
+      "verse": 10,
+      "half": 2,
+      "clip_id": "nar_017_010_2",
+      "path": "/Users/shankararamasharma/Desktop/Vyoma Linguistic Labs/AI - AI Projects/Narayaneeyam/Dashakam 17/Narayaneeyam Dashakam 17.10.2.txt"
+    },
+    {
+      "dasakam": 21,
+      "verse": 11,
+      "half": 1,
+      "clip_id": "nar_021_011_1",
+      "path": "/Users/shankararamasharma/Desktop/Vyoma Linguistic Labs/AI - AI Projects/Narayaneeyam/Dashakam 21/Narayaneeyam Dashakam 21.11.1.txt"
+    },
+    {
+      "dasakam": 21,
+      "verse": 11,
+      "half": 2,
+      "clip_id": "nar_021_011_2",
+      "path": "/Users/shankararamasharma/Desktop/Vyoma Linguistic Labs/AI - AI Projects/Narayaneeyam/Dashakam 21/Narayaneeyam Dashakam 21.11.2.txt"
+    },
+    {
+      "dasakam": 21,
+      "verse": 12,
+      "half": 1,
+      "clip_id": "nar_021_012_1",
+      "path": "/Users/shankararamasharma/Desktop/Vyoma Linguistic Labs/AI - AI Projects/Narayaneeyam/Dashakam 21/Narayaneeyam Dashakam 21.12.1.txt"
+    },
+    {
+      "dasakam": 21,
+      "verse": 12,
+      "half": 2,
+      "clip_id": "nar_021_012_2",
+      "path": "/Users/shankararamasharma/Desktop/Vyoma Linguistic Labs/AI - AI Projects/Narayaneeyam/Dashakam 21/Narayaneeyam Dashakam 21.12.2.txt"
+    }
+  ],
+  "duplicate_audio_keys": [],
+  "duplicate_text_keys": [],
+  "unparseable_audio_paths": [],
+  "unparseable_text_paths": []
+}

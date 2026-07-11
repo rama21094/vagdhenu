@@ -1,0 +1,12 @@
+clip_id,reference_status,issue,source
+nar_008_003_1,preferred_first_half,standard Vasantatilaka tune and good recording,human listening
+nar_016_004_2,preferred_second_half,standard Vasantatilaka tune and very good recording,human listening
+nar_017_002_2,good_second_half,standard Vasantatilaka tune and good recording,human listening
+nar_021_002_1,good_first_half,standard Vasantatilaka tune and good recording,human listening
+nar_023_002_1,good_first_half,standard Vasantatilaka tune and good recording,human listening
+nar_029_005_1,good_first_half,standard Vasantatilaka tune and good recording,human listening
+nar_038_004_2,good_second_half,standard Vasantatilaka tune and good recording,human listening
+nar_043_007_2,good_second_half,standard Vasantatilaka tune and excellent tonal quality,human listening
+nar_012_007_1,reject_reference,recording or network corruption near prasari,human listening
+nar_033_008_2,reject_reference,recording or network corruption and trailing voice,human listening
+nar_052_007_1,reject_reference,metallic sound at end of recording,human listening
