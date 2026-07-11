@@ -6,6 +6,8 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
+import unicodedata
 from pathlib import Path
 
 
@@ -22,34 +24,48 @@ METER_SLUGS = {
     "mandākrāntā": "śārdūlavikrīḍita",
 }
 
-SLP_VOWELS = frozenset("aAiIuUfFxXeEoO")
+def count_aksharas(text: str) -> int:
+    count = 0
+    for index, character in enumerate(text):
+        codepoint = ord(character)
+        independent_vowel = 0x0905 <= codepoint <= 0x0914
+        consonant = 0x0915 <= codepoint <= 0x0939
+        if independent_vowel:
+            count += 1
+        elif consonant:
+            following = text[index + 1] if index + 1 < len(text) else ""
+            if following != "्":
+                count += 1
+    return count
 
 
-def split_quarter_padas(row: dict) -> list[str]:
+def split_quarter_padas(row: dict, *, strict: bool = True) -> list[str]:
     """Split a two-quarter recording at its metrically determined word boundary."""
     scans = json.loads(row["line_scans_json"])
     if len(scans) != 2:
         raise ValueError(f"{row['clip_id']}: expected two quarter scans, got {len(scans)}")
     desired = int(scans[0]["syllables"])
-    text_words = row["text_clean"].split()
-    terminal = [word for word in text_words if word in {"।", "॥"}]
-    text_words = [word for word in text_words if word not in {"।", "॥"}]
-    slp_words = row["slp1"].split()
-    if len(text_words) != len(slp_words):
-        raise ValueError(
-            f"{row['clip_id']}: text/SLP word mismatch {len(text_words)} != {len(slp_words)}"
-        )
+    clean_text = re.sub(r"\s*[-–—]?\s*\([^)]*\)", " ", row["text_clean"])
+    all_words = clean_text.split()
+    is_lexical = lambda word: any(unicodedata.category(ch)[0] in {"L", "M"} for ch in word)
+    text_words = [word for word in all_words if is_lexical(word)]
+    terminal = [word for word in all_words if not is_lexical(word)]
     cumulative = 0
     boundary = None
-    for index, slp_word in enumerate(slp_words, start=1):
-        cumulative += sum(character in SLP_VOWELS for character in slp_word)
+    candidates = []
+    for index, text_word in enumerate(text_words, start=1):
+        cumulative += count_aksharas(text_word)
+        if index < len(text_words):
+            candidates.append((abs(cumulative - desired), index))
         if cumulative == desired:
             boundary = index
             break
         if cumulative > desired:
             break
     if boundary is None or boundary == len(text_words):
-        raise ValueError(f"{row['clip_id']}: no internal word boundary at syllable {desired}")
+        if strict or not candidates:
+            raise ValueError(f"{row['clip_id']}: no internal word boundary at syllable {desired}")
+        boundary = min(candidates)[1]
     first = " ".join(text_words[:boundary])
     second = " ".join(text_words[boundary:] + terminal)
     return [first, second]

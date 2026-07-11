@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4efe4">
+  <title>Vāgdhenu Recording Studio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Vāgdhenu Recording Studio">
+        <span class="brand-mark">वा</span>
+        <span><strong>Vāgdhenu</strong><small>Recording Studio</small></span>
+      </a>
+      <div class="project-tools">
+        <label class="select-wrap"><span>Collection</span><select id="projectSelect"></select></label>
+        <button class="button secondary" id="importButton">Import script</button>
+        <button class="icon-button" id="settingsButton" title="Microphone settings" aria-label="Microphone settings">⚙</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="progress-strip">
+        <div>
+          <span class="eyebrow" id="collectionLabel">Narayaneeyam</span>
+          <h1 id="locationLabel">Dasakam 1 · Verse 1 · Quarter 1</h1>
+        </div>
+        <div class="progress-summary">
+          <strong id="progressText">0 / 0</strong>
+          <div class="progress-track"><span id="progressBar"></span></div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="queue-panel">
+          <div class="queue-head">
+            <h2>Recording queue</h2>
+            <select id="queueFilter" aria-label="Filter recording queue">
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="accepted">Accepted</option>
+              <option value="review">Needs review</option>
+            </select>
+          </div>
+          <input id="queueSearch" class="search" type="search" placeholder="Search text or number…">
+          <div id="queueList" class="queue-list" role="list"></div>
+        </aside>
+
+        <section class="recording-card">
+          <div class="script-meta">
+            <span class="pill" id="meterPill">Meter</span>
+            <span id="syllableLabel">— syllables</span>
+            <span id="takeLabel">No takes yet</span>
+          </div>
+          <div class="verse-display" id="verseText" lang="sa">Loading…</div>
+          <p class="recording-hint">Read exactly what is shown. Leave a natural decay after the final sound.</p>
+          <audio id="existingPlayback" class="existing-playback hidden" controls></audio>
+
+          <div class="meter-panel">
+            <canvas id="levelCanvas" width="900" height="88" aria-label="Microphone level"></canvas>
+            <div class="meter-labels"><span>Quiet</span><span>Healthy voice</span><span>Clipping</span></div>
+          </div>
+
+          <div class="transport">
+            <button class="nav-button" id="previousButton" aria-label="Previous quarter">←</button>
+            <button class="record-button" id="recordButton"><span class="record-dot"></span><span id="recordLabel">Record</span></button>
+            <button class="nav-button" id="nextButton" aria-label="Next quarter">→</button>
+          </div>
+          <div class="timer" id="timer">00:00.0</div>
+
+          <section class="review-panel hidden" id="reviewPanel">
+            <div class="review-top">
+              <div>
+                <span class="eyebrow">Review this take</span>
+                <h2>Listen before accepting</h2>
+              </div>
+              <audio id="playback" controls></audio>
+            </div>
+            <div class="quality-grid" id="qualityGrid"></div>
+            <label class="notes-label">Notes <textarea id="notes" rows="2" placeholder="Pronunciation, room noise, interruption…"></textarea></label>
+            <div class="review-actions">
+              <button class="button secondary" id="discardButton">Discard & retake</button>
+              <button class="button secondary" id="saveReviewButton">Save for review</button>
+              <button class="button primary" id="acceptButton">Accept & next <span>↵</span></button>
+            </div>
+          </section>
+
+          <div class="shortcut-row"><span><kbd>R</kbd> record / stop</span><span><kbd>Space</kbd> play</span><span><kbd>Enter</kbd> accept & next</span></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="importDialog">
+    <form method="dialog" class="dialog-card" id="importForm">
+      <div class="dialog-head"><div><span class="eyebrow">New collection</span><h2>Import recording script</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div>
+      <p>Put one quarter on each non-empty line. Ending daṇḍas are allowed. Every four lines are grouped into one verse.</p>
+      <label>Collection name<input id="importName" required placeholder="e.g. Viṣṇusahasranāma"></label>
+      <label>Quarter-per-line script<textarea id="importText" required rows="12" lang="sa" placeholder="विश्वं विष्णुर्वषट्कारो… ।&#10;भूतभव्यभवत्प्रभुः… ।"></textarea></label>
+      <div class="dialog-actions"><button class="button secondary" value="cancel">Cancel</button><button class="button primary" id="importSubmit" value="default">Create collection</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head"><div><span class="eyebrow">Audio input</span><h2>Recording settings</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div>
+      <label>Microphone<select id="microphoneSelect"></select></label>
+      <div class="settings-note"><strong>Recommended</strong><span>Quiet room · fixed microphone distance · headphones off · disable macOS voice isolation and automatic gain when available.</span></div>
+      <div class="dialog-actions"><button class="button primary" value="default">Done</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

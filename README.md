@@ -36,6 +36,21 @@ bash scripts/setup.sh    # torch+cu121, deps, BigVGAN, and downloads weights -> 
 python src/render.py --shard examples/sample_shard.json --results /tmp/res.json --outdir out
 # -> out/sample_anushtubh.wav
 ```
+
+## Local recording studio
+
+The repository includes a macOS-friendly quarter-by-quarter dataset recorder.
+It preloads 2,462 Narayaneeyam quarter prompts, captures mono 24 kHz WAV,
+preserves numbered retakes, performs basic signal QC, and writes JSONL/CSV
+training metadata automatically.
+
+```bash
+python3 recorder/server.py
+```
+
+Then open <http://127.0.0.1:8765>. See [`recorder/README.md`](recorder/README.md)
+for the recording workflow, storage layout, reliability guidance, and importing
+new quarter-per-line Sanskrit scripts.
 The batch renderer takes a shard JSON: `[{"id","meter","padas":[devanagari…],"seed","out"}]`. For one-off single-verse renders see `src/render_production.py`. `CHAMP_ROOT` env overrides the weights dir (default `models/`).
 
 ## Case studies

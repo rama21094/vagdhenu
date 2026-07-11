@@ -10,6 +10,7 @@ __pycache__/
 .DS_Store
 .venv/
 .audit-venv/
+recorder_data/
 BigVGAN/
 demo/BigVGAN/
 !src/reference_bank/*.wav
